@@ -1,0 +1,10 @@
+﻿namespace EmpWebApplication.Models
+{
+    public class EmployeeSkill
+    {
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
+        public int SkillId { get; set; }
+        public Skill skill { get; set; }
+    }
+}

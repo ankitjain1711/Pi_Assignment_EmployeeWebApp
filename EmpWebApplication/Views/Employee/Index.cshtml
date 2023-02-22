@@ -1,0 +1,175 @@
+﻿
+@model IEnumerable<EmpWebApplication.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="~/js/ajax.js"></script>
+<script src="~/js/edit.js"></script>
+
+<h1>Index</h1>
+
+<p>
+    <a href="#" onclick=" CreateNew(); return false;" class="btn btn-primary">Create New</a>
+    @Html.Partial("~/Views/Shared/Master/_employee.cshtml")
+</p>
+<p>
+    @using(Html.BeginForm("find", "Employee", FormMethod.Get))
+    {
+    <b>Search By Name: </b> @Html.TextBox("search") <input type="submit" value="Search"/>
+    }
+</p>
+<p>
+    <b>List of Employees :</b>
+</p>
+<table class="table" id="tbl_id" border="1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesignationId)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody >
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesignationId)
+            </td>
+            <td>
+                <p><a href="#" onclick=" Update(); return false;">Edit Ajax</a> 
+                    @Html.Partial("~/Views/Shared/Master/_edit.cshtml")
+                </p> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+<script type="text/javascript">
+//$(document).ready(function() { 
+    
+//});
+//function CreateNew() { 
+//    ClearAll();
+//    $('#btnmodel').trigger('click');
+//}
+//function ClearAll() {
+//    $('#FirstName').val('');
+//    $('#LastName').val('');
+//    $('#DOB').val('');
+//    $('#Gender').val('');
+//    $('#DeptId').val('');
+//    $('#DesignationId').val('');
+//    $('#Salary').val('');
+//    $('#SkillName').val('');
+//}
+
+//function Save() {
+//    var firstname = $('#FirstName').val();
+//    var lastname = $('#LastName').val();
+//    var dob = $('#DOB').val();
+//    var gender = $('#Gender').val();
+//    var deptid = $('#DeptId').val();
+//    var desgid = $('#DesignationId').val();
+//    var salary = $('#Salary').val();
+//    //var skill =  $('#SkillName').val(); //$('#chk').val(); //
+//    var val = [];
+//    $(':checkbox:checked').each(function(i){
+//          val[i] =Number( $(this).val());
+//    });
+
+//    var skill = val.join(',') ;
+//    var empdata = new Object();
+
+//    if (!firstname) {
+//        alert('FirstName Required !!!');
+//        return;
+//    } 
+
+//    if (!lastname) {
+//        alert('lastName Required !!!');
+//        return;
+//    } 
+
+
+    
+    
+//    empdata.firstname = firstname;
+//    empdata.lastname = lastname;
+//    empdata.dob = dob;
+//    empdata.gender = gender;
+//    empdata.deptid=deptid;
+//    empdata.DesignationId = desgid;
+//    empdata.salary = salary;
+//    empdata.skills = skill;
+
+//    let p_employee = empdata;
+
+//    $.ajax({
+//        type: 'post',
+//        url: '/Employee/CreateEmploye',
+//        data: p_employee,
+//        traditional:true,
+//        success:function(data) {
+//            if (data) {
+//                console.log(data);
+//                alert('Saved Successfully !!')
+//                //$('#tbl_id').load('/Employee/Index');
+//                //window.load('/Employee/Index');
+//                //window.location.href="/Employee/Index"; //~/Views/Employee/Index
+//                $.get('/Employee/Index', function(data) {
+//                    $("body").html(data)
+//                });
+//            } else {
+//                alert('failed !!')
+//            }
+//        }
+//    });
+//}
+</script>

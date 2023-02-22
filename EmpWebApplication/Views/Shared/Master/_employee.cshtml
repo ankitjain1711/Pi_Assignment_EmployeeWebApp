@@ -1,0 +1,83 @@
+﻿
+<script src="~/js/ajax.js"></script>
+
+<form id="test">
+ 
+    <button type="button" id="btnmodel" style="display:none" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeeModal">
+        Create Employee
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Employee</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label"> First Name</label>
+                        <input id="FirstName" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label"> Last Name</label>
+                        <input id="LastName" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">DOB</label>
+                        <input type="datetime" id="DOB" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Gender</label>
+                        <input id="Gender" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DesignationId">Choose a Designation:</label>
+                        <select id="DesignationId" name="DesignationId">
+                            <option value="1">Developer</option>
+                            <option value="2">TeamLead</option>
+                            <option value="3">Manager</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DeptId">Choose a Department:</label>
+                        <select id="DeptId" name="DeptId">
+                            <option value="1">HR</option>
+                            <option value="2">IT</option>
+                            <option value="3">Sales</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Salary</label>
+                        <input id="Salary" class="form-control" />
+                    </div>
+
+                    <div>
+                        <label>Select your Skills: </label> <br />
+                        @foreach (var item in ViewBag.skills)
+                        {
+                            <label for="SkillName"> @item.SkillName </label>
+                            <input type="checkbox" id="SkillName" name="SkillName" value="@item.SkillId">
+                        }
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+                    <input id="btnsubmit" type="button" value="Submit" onclick="Save();return false" />
+                    <a href="#" onclick="Save();return false" class="btn btn-primary">Save changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
